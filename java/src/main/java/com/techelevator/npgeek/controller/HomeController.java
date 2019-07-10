@@ -28,11 +28,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path = "/parkDetail", method = RequestMethod.GET)
-	public String showSpaceStoreProductDetailInput(@RequestParam String parkCode, ModelMap modelHolder) {
+	public String showParkDetailPage(@RequestParam String parkCode, ModelMap modelHolder) {
 		
 		modelHolder.put("parks", somePark.getParkByParkCode(parkCode));
 
-		return "ParkProductDetail";
+		return "parkDetail";
 	}
 	
 }
