@@ -1,8 +1,26 @@
 package com.techelevator.npgeek.model;
 
-import org.springframework.jdbc.support.rowset.SqlRowSet;
+import java.util.ArrayList;
+import java.util.List;
 
-public class JDBCParkDAO {
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
+
+@Component
+public class JDBCParkDAO implements ParkDAO {
+	
+	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public JDBCParkDAO(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
 
 	private Park mapRowSetToPark(SqlRowSet results) {
 		Park aPark = new Park();
@@ -24,6 +42,32 @@ public class JDBCParkDAO {
 		return aPark;
 	}
 
+
+	@Override
+	public List<Park> getAllParks() {
+		List<Park> allParks = new ArrayList<>();
+		String sqlSelectAllParks = "SELECT * FROM products";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllParks);
+		while (results.next()) {
+			allParks.add(mapRowSetToPark(results));
+		}
+		return allParks;
+	}
+
+	
+	@Override
+	public Park getParkByParkCode(String parkCode) {
+		Park aPark = null;
+		String sqlSelectParkByParkCode = "SELECT * FROM park WHERE parkcode = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectParkByParkCode, parkCode);
+		if (results.next()) {
+			aPark = mapRowSetToPark(results);
+		}
+		return aPark;
+	}
+
+	
+	
 	
 	
 }

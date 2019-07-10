@@ -1,8 +1,20 @@
 package com.techelevator.npgeek.model;
 
-import org.springframework.jdbc.support.rowset.SqlRowSet;
+import javax.sql.DataSource;
 
-public class JDBCWeatherDAO {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+@Component
+public class JDBCWeatherDAO implements WeatherDAO {
+		
+		private JdbcTemplate jdbcTemplate;
+
+		@Autowired
+		public JDBCWeatherDAO(DataSource dataSource) {
+			this.jdbcTemplate = new JdbcTemplate(dataSource);
+		}
 
 	
 	
