@@ -8,6 +8,7 @@
     
 <div id="main-content"> 
 
+					<div id="park-content">
 <c:url var = "image" value ="/img/parks/${fn:toLowerCase(parks.parkCode)}.jpg"/>
 					<a><img src="${image}"/> </a>
 					<h2>${parks.parkName}</h2>
@@ -27,23 +28,29 @@
 					<li>${parks.entryFee}</li>
 					<li>${parks.numberOfAnimalSpecies}</li>
 					</ul>
+					
+					</div>
+					
+					<div id="forecast-content">
+					<c:forEach var="parkForecast" items="${forecasts}">
+					<c:url var = "forecastImage" value ="/img/weather/${parkForecast.forecast}.png"/>
+					<c:if test="${parkForecast.forecast eq 'partly cloudy'}">
+					 <c:url var = "forecastImage" value ="/img/weather/partlyCloudy.png" />
+					 </c:if>
+					<%-- <a><img src="${forecastImage}"/> </a> --%>
+					<table>
+					<tr>
+					<td><a><img src="${forecastImage}"/> </a></td>
+					<td>${parkForecast.forecast}</td>
+					<td>${parkForecast.high}</td>
+					<td>${parkForecast.low}</td>
+					<td>${parkForecast.fiveDayForecastValue}</td>
+					</tr>
+					</table>
+					</c:forEach>
+				
+					</div>
+</div>
 
 
 
-
-
-<!-- parkcode
-parkname
-state
-acreage
-elevationinfeet
-milesoftrail
-numberofcampsites
-climate
-yearfounded
-annualvisitorcount
-inspirationalquote
-inspirationalquotesource
-parkdescription
-entryfee
-numberofanimalspecies -->

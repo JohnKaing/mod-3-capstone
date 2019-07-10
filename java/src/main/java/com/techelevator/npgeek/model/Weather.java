@@ -3,7 +3,7 @@ package com.techelevator.npgeek.model;
 public class Weather {
 
 	private String parkCode;
-	private int	   fiveDateForecastValue;
+	private int	   fiveDayForecastValue;
 	private int    low;
 	private int    high;
 	private String forecast;
@@ -20,16 +20,16 @@ public class Weather {
 		this.parkCode = parkCode;
 	}
 	/**
-	 * @return the fiveDateForecastValue
+	 * @return the fiveDayForecastValue
 	 */
-	public int getFiveDateForecastValue() {
-		return fiveDateForecastValue;
+	public int getFiveDayForecastValue() {
+		return fiveDayForecastValue;
 	}
 	/**
-	 * @param fiveDateForecastValue the fiveDateForecastValue to set
+	 * @param fiveDayForecastValue the fiveDateForecastValue to set
 	 */
-	public void setFiveDateForecastValue(int fiveDateForecastValue) {
-		this.fiveDateForecastValue = fiveDateForecastValue;
+	public void setFiveDayForecastValue(int fiveDayForecastValue) {
+		this.fiveDayForecastValue = fiveDayForecastValue;
 	}
 	/**
 	 * @return the low

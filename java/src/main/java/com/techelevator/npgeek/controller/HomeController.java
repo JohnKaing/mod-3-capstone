@@ -2,6 +2,7 @@ package com.techelevator.npgeek.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.npgeek.model.Park;
 import com.techelevator.npgeek.model.ParkDAO;
+import com.techelevator.npgeek.model.WeatherDAO;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private ParkDAO somePark;
+	
+	@Autowired
+	private WeatherDAO someForecast;
 
 	@RequestMapping(value= {"/","homePage"})
 	public String displayHomePage(ModelMap modelHolder) {
@@ -28,9 +33,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path = "/parkDetail", method = RequestMethod.GET)
-	public String showParkDetailPage(@RequestParam String parkCode, ModelMap modelHolder) {
-		
+	public String showParkDetailPage(HttpServletRequest request, ModelMap modelHolder) {
+		String parkCode = request.getParameter("parkCode");
 		modelHolder.put("parks", somePark.getParkByParkCode(parkCode));
+		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
 
 		return "parkDetail";
 	}
