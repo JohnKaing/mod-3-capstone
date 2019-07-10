@@ -1,5 +1,7 @@
 package com.techelevator.npgeek.model;
 
+import java.time.LocalDateTime;
+
 public class SurveyResult {
 
 	private int    surveyId;
@@ -67,6 +69,10 @@ public class SurveyResult {
 		this.activityLevel = activityLevel;
 	}
 	private String activityLevel;
+	public void setDatePosted(LocalDateTime now) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	

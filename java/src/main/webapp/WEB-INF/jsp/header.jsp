@@ -21,7 +21,7 @@
 		    <h2>National Park Geek</h2>
         <ul>
             <li><a href="homePage">Home</a></li>
-            <li><a href="Survey">Survey</a></li>
+            <li><a href="survey">Survey</a></li>
         </ul>
 		</ul>
 	

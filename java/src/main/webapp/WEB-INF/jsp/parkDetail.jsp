@@ -31,6 +31,10 @@
 					
 					</div>
 					
+					<select>Select Temperature
+					 <option value="Fahrenheit">Fahrenheit</option>
+					 <option value="Celsius">Celsius</option>
+					</select>
 					<div id="forecast-content">
 					<c:forEach var="parkForecast" items="${forecasts}">
 					<c:url var = "forecastImage" value ="/img/weather/${parkForecast.forecast}.png"/>
@@ -45,6 +49,30 @@
 					<td>${parkForecast.high}</td>
 					<td>${parkForecast.low}</td>
 					<td>${parkForecast.fiveDayForecastValue}</td>
+					<td><c:if test="${parkForecast.forecast eq 'snow'}">
+					 <label>Pack snowshoes</label>
+					 </c:if>
+					 <c:if test="${parkForecast.forecast eq 'rain'}">
+					 <label>pack rain gear and wear waterproof shoes</label>
+					 </c:if>
+					  <c:if test="${parkForecast.forecast eq 'thunderstorms'}">
+					 <label>"Seek shelter and avoid hiking on exposed ridges"</label>
+					 </c:if>
+					 <c:if test="${parkForecast.forecast eq 'sun'}">
+					 <label>"pack sunblock"</label>
+					 </c:if>
+					 <c:if test="${parkForecast.high > '75'}">
+					 <label>bring an extra gallon of water</label>
+					 </c:if>
+					  <c:if test="${parkForecast.high - parkForecast.low > '20'}">
+					 <label>wear breathable layers</label>
+					 </c:if>
+					  <c:if test="${parkForecast.low < '20'}">
+					 <label>Warning! danger of exposure to frigid temps</label>
+					 </c:if></td>
+					
+					 
+					 
 					</tr>
 					</table>
 					</c:forEach>
@@ -52,5 +80,5 @@
 					</div>
 </div>
 
-
-
+<select id="genre" name="genre">
+		<option value="Action">Action</option>
