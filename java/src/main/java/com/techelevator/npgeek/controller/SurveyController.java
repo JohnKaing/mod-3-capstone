@@ -1,5 +1,6 @@
 package com.techelevator.npgeek.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.techelevator.npgeek.model.FavoritePark;
 import com.techelevator.npgeek.model.Park;
 import com.techelevator.npgeek.model.ParkDAO;
 import com.techelevator.npgeek.model.SurveyResult;
@@ -26,11 +28,17 @@ public class SurveyController {
 	private ParkDAO somePark;
 	
 	@RequestMapping(path="/surveyResult", method=RequestMethod.GET)
-	public String showSurvey(HttpServletRequest request) {
+	public String showSurvey(ModelMap modelHolder) {
+		List<Park> parks = new ArrayList<>();
+		List<FavoritePark> favoriteParks = SurveyResultDAO.getFavoriteParks();
+		for(FavoritePark fp: favoriteParks) {
+			parks.add(somePark.getParkByParkCode(fp.getParkCode()));
+			
+		}
 		
-		List<SurveyResult> surveyResult = SurveyResultDAO.getAllPosts(); 
-		
-		request.setAttribute("post", surveyResult);		
+		modelHolder.put("parks", parks);
+//		List<SurveyResult> surveyResult = SurveyResultDAO.getAllPosts(); 
+//		request.setAttribute("post", surveyResult);		
 		
 		return "surveyResult";		
 	}

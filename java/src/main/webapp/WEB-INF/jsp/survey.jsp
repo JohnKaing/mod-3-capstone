@@ -12,14 +12,12 @@
    					<div class="formInputGroup">
 					
 					<label for="favoriteNationalPark">Favorite National Park: </label>
-					<select name="nameOfParks"	id="nameOfParks">
+					<select name="parkCode"	id="nameOfParks">
 					<c:forEach var="favPark" items="${parks}">
 					<div class="favPark">
-					<option value="${favPark.parkName}">${favPark.parkName}</option>
-				
+					<option value="${favPark.parkCode}">${favPark.parkName}</option>
 					</div>
 					</c:forEach>
-				
 					</select>
 					</div>
 				
@@ -95,8 +93,8 @@
 			<option value="ExtremelyActive">Extremely Active</option>
 			</select>
 			</div>
-						<input type="hidden" name="parkCode" value="${favPark.parkCode}"/>	
-					<!-- <input type="hidden" name="parkCode" value="CVNP"/>		 -->
+						
 					<input type="submit" value="Post" />		
 			</form>
    
+   <c:import url="/WEB-INF/jsp/footer.jsp" /> 

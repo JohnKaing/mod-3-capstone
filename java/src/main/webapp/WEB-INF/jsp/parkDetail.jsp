@@ -30,11 +30,16 @@
 					</ul>
 					
 					</div>
+	<c:url var="temperatureUrl" value="parkDetail?parkCode=${parks.parkCode}"/>				
+	<form action ="${temperatureUrl}" method="POST">
+	<input type="hidden" name="parkCode" value="${parks.parkCode}"/>
+	<select>Select Temperature
+		<option value="Fahrenheit">Fahrenheit</option>
+		<option value="Celsius">Celsius</option>
+	</select>
+	<input type="submit" value="Change Temperature">
+	</form>
 					
-					<select>Select Temperature
-					 <option value="Fahrenheit">Fahrenheit</option>
-					 <option value="Celsius">Celsius</option>
-					</select>
 					<div id="forecast-content">
 					<c:forEach var="parkForecast" items="${forecasts}">
 					<c:url var = "forecastImage" value ="/img/weather/${parkForecast.forecast}.png"/>
@@ -80,5 +85,5 @@
 					</div>
 </div>
 
-<select id="genre" name="genre">
-		<option value="Action">Action</option>
+		
+ <c:import url="/WEB-INF/jsp/footer.jsp" />		

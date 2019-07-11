@@ -26,6 +26,3 @@
 		</ul>
 	
 	</nav>
-
-</body>
-</html>
