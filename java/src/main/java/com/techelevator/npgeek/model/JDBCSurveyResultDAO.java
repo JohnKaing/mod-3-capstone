@@ -43,6 +43,7 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 			post.setParkCode(results.getString("parkCode"));
 			post.setEmailAddress(results.getString("emailAddress"));
 			post.setState(results.getString("state"));
+			post.setActivityLevel(results.getString("activityLevel"));
 			allPosts.add(post);
 		}
 		return allPosts;
@@ -52,8 +53,8 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 	@Override
 	public void save(SurveyResult post) {
 		int id = getNextId();
-		String sqlInsertPost = "INSERT INTO forum_post(id, parkCode, emailAddress, state) VALUES (?,?,?,?)";
-		jdbcTemplate.update(sqlInsertPost, id, post.getParkCode(), post.getEmailAddress(), post.getState());
+		String sqlInsertPost = "INSERT INTO survey_result(surveyid, parkcode, emailaddress, state, activitylevel) VALUES (?,?,?,?,?)";
+		jdbcTemplate.update(sqlInsertPost, id, post.getParkCode(), post.getEmailAddress(), post.getState(), post.getActivityLevel());
 		post.setSurveyId(id);
 	}
 

@@ -5,18 +5,25 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.techelevator.npgeek.model.Park;
+import com.techelevator.npgeek.model.ParkDAO;
 import com.techelevator.npgeek.model.SurveyResult;
 import com.techelevator.npgeek.model.SurveyResultDAO;
-
+@Controller
 public class SurveyController {
 
 	
 	@Autowired			
 	private SurveyResultDAO SurveyResultDAO;
+	
+	@Autowired
+	private ParkDAO somePark;
 	
 	@RequestMapping(path="/surveyResult", method=RequestMethod.GET)
 	public String showSurvey(HttpServletRequest request) {
@@ -29,17 +36,18 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(path="/survey", method=RequestMethod.GET)
-	public String showSurveyInput() {
-		
+	public String showSurveyInput(ModelMap modelHolder) {
+		List<Park> listOfParks = somePark.getAllParks();
+		modelHolder.put("parks", listOfParks);
 		return "survey";
 	}
 	
 	
-	@RequestMapping(path="/survey", method=RequestMethod.POST)
+	@RequestMapping(path="/surveyResult", method=RequestMethod.POST)
 	public String sendSurveyInput(@ModelAttribute SurveyResult post) {		
 		
 			SurveyResultDAO.save(post);
 			
-return "redirect:/surveyResult";
+return "/surveyResult";
 	}
 }

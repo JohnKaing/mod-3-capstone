@@ -8,6 +8,7 @@ public class SurveyResult {
 	private String parkCode;
 	private String emailAddress;
 	private String state;
+	private String activityLevel;
 	/**
 	 * @return the surveyId
 	 */
@@ -68,7 +69,7 @@ public class SurveyResult {
 	public void setActivityLevel(String activityLevel) {
 		this.activityLevel = activityLevel;
 	}
-	private String activityLevel;
+
 	public void setDatePosted(LocalDateTime now) {
 		// TODO Auto-generated method stub
 		
