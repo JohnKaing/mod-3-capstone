@@ -37,15 +37,15 @@ public class HomeController {
 	
 	@RequestMapping(path = "/parkDetail", method = RequestMethod.GET)
 	public String showParkDetailPage(@RequestParam String parkCode, ModelMap modelHolder, HttpSession session) {
-		String temp = (String)session.getAttribute("temp");
+		String temp = (String)session.getAttribute("tempUnit");
 		if(temp == null) {
 			temp = "F";
-			session.setAttribute("tempConversion", temp);
+			session.setAttribute("tempUnit", temp);
 		}
 		
 		Park aPark = somePark.getParkByParkCode(parkCode);
 		modelHolder.put("parks", aPark);
-		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
+		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode, temp));
 
 		return "parkDetail";
 	}
@@ -53,10 +53,10 @@ public class HomeController {
 	@RequestMapping(path = "/temperatureConversion", method = RequestMethod.POST)
 	public String showParkDetailPageTemp(HttpSession session, @RequestParam String temperature, @RequestParam String parkCode) {
 		if(temperature.startsWith("F")) {
-			session.setAttribute("temp", "F");
+			session.setAttribute("tempUnit", "F");
 		}
 		else if(temperature.startsWith("C")) {
-			session.setAttribute("temp", "C");
+			session.setAttribute("tempUnit", "C");
 		}
 		
 //		String parkCode = request.getParameter("parkCode");

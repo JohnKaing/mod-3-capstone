@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface WeatherDAO {
 
-	public List<Weather> getForecastByParkCode(String parkCode);
+	public List<Weather> getForecastByParkCode(String parkCode, String tempUnit);
 }

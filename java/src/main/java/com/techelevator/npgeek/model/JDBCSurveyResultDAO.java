@@ -33,7 +33,7 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 
 	
 	@Override
-	public List<SurveyResult> getAllPosts() {
+	public List<SurveyResult> getAllPosts() { // don't need this, take out when refactoring
 		List<SurveyResult> allPosts = new ArrayList<>();
 		String sqlSelectAllPosts = "SELECT * FROM survey_result";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllPosts);

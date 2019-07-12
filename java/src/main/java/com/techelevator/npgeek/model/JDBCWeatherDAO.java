@@ -21,12 +21,12 @@ public class JDBCWeatherDAO implements WeatherDAO {
 
 	
 	
-	private Weather mapRowSetToWeather(SqlRowSet results) {
+	private Weather mapRowSetToWeather(SqlRowSet results, String tempUnit) {
 		Weather aWeather = new Weather();
 		aWeather.setParkCode(results.getString("parkCode"));
 		aWeather.setFiveDayForecastValue(results.getInt("fiveDayForecastValue"));
-		aWeather.setLow(results.getInt("low"));
-		aWeather.setHigh(results.getInt("high"));
+		aWeather.setLow(tempUnit.equals("C")? (results.getInt("low") - 32) * 5/9 : results.getInt("low"));
+		aWeather.setHigh(tempUnit.equals("C")? (results.getInt("high") - 32) * 5/9 : results.getInt("high"));
 		aWeather.setForecast(results.getString("forecast"));
 		return aWeather;
 	}
@@ -34,14 +34,14 @@ public class JDBCWeatherDAO implements WeatherDAO {
 
 
 	@Override
-	public List<Weather> getForecastByParkCode(String parkCode) {
+	public List<Weather> getForecastByParkCode(String parkCode, String tempUnit) {
 			Weather aWeather = null;
 			List<Weather> parkWeather = new ArrayList<Weather>();
 			
 			String sqlSelectForecastByParkCode = "SELECT * FROM weather WHERE parkcode = ? ORDER BY fivedayforecastvalue ASC";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectForecastByParkCode, parkCode);
 			while (results.next()) {
-				aWeather = mapRowSetToWeather(results);
+				aWeather = mapRowSetToWeather(results, tempUnit);
 						parkWeather.add(aWeather);
 			}
 			return parkWeather;
