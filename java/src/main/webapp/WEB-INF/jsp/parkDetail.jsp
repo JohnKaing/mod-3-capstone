@@ -30,15 +30,24 @@
 					</ul>
 					
 					</div>
-	<c:url var="temperatureUrl" value="parkDetail?parkCode=${parks.parkCode}"/>				
-	<form action ="${temperatureUrl}" method="POST">
-	<input type="hidden" name="parkCode" value="${parks.parkCode}"/>
-	<select>Select Temperature
+<%-- 	<c:url var="temperatureUrl" value="parkDetail?parkCode=${parks.parkCode}"/>				
+ --%>	
+ <c:url var="temperatureUrl" value="/temperatureConversion">
+  <c:param name = "parkCode">${parks.parkCode}</c:param>
+   </c:url>
+ <form action ="${temperatureUrl}" method="POST">
+<%-- 	<input type="hidden" name="parkCode" value="${parks.parkCode}"/>
+ --%>	<select name="temperature">Select Temperature
 		<option value="Fahrenheit">Fahrenheit</option>
 		<option value="Celsius">Celsius</option>
 	</select>
 	<input type="submit" value="Change Temperature">
 	</form>
+				
+				
+				
+				
+				
 					
 					<div id="forecast-content">
 					<c:forEach var="parkForecast" items="${forecasts}">

@@ -3,6 +3,7 @@ package com.techelevator.npgeek.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,20 +36,33 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path = "/parkDetail", method = RequestMethod.GET)
-	public String showParkDetailPage(HttpServletRequest request, ModelMap modelHolder) {
-		String parkCode = request.getParameter("parkCode");
-		modelHolder.put("parks", somePark.getParkByParkCode(parkCode));
+	public String showParkDetailPage(@RequestParam String parkCode, ModelMap modelHolder, HttpSession session) {
+		String temp = (String)session.getAttribute("temp");
+		if(temp == null) {
+			temp = "F";
+			session.setAttribute("tempConversion", temp);
+		}
+		
+		Park aPark = somePark.getParkByParkCode("parkCode");
+		modelHolder.put("parks", aPark);
 		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
 
 		return "parkDetail";
 	}
 	
-	@RequestMapping(path = "/parkDetail", method = RequestMethod.POST)
-	public String showParkDetailPageTemp(HttpServletRequest request, ModelMap modelHolder) {
-		String parkCode = request.getParameter("parkCode");
-		modelHolder.put("parks", somePark.getParkByParkCode(parkCode));
-		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
-		return "parkDetail";
+	@RequestMapping(path = "/temperatureConversion", method = RequestMethod.POST)
+	public String showParkDetailPageTemp(HttpSession session, @RequestParam String temperature, @RequestParam String parkCode) {
+		if(temperature.startsWith("F")) {
+			session.setAttribute("temp", "F");
+		}
+		else if(temperature.startsWith("C")) {
+			session.setAttribute("temp", "C");
+		}
+		
+//		String parkCode = request.getParameter("parkCode");
+//		modelHolder.put("parks", somePark.getParkByParkCode(parkCode));
+//		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
+		return "redirect:/parkDetail?parkCode=" + parkCode;
 	}
 	
 }
