@@ -10,13 +10,18 @@
 		 <c:forEach var="homePark" items="${parks}">
 					<div class="hPark">
 					<c:url var = "image" value ="/img/parks/${fn:toLowerCase(homePark.parkCode)}.jpg"/>
-					<a href="parkDetail?parkCode=${homePark.parkCode}"> <img src="${image}"/> </a>
-					<h2>${homePark.parkName}</h2>	
-						<ul>
-							<li> ${homePark.state}</li>
-							<li> ${homePark.parkDescription}</li>
-						</ul>
-					
+				<table>
+
+		<tr>
+					<th><a href="parkDetail?parkCode=${homePark.parkCode}"> <img class="images" src="${image}"/> </a></th>
+					<h2>${homePark.parkName}</h2>
+						
+							<td> ${homePark.state}</td>
+							<td> ${homePark.parkDescription}</td>
+						
+						</tr>
+
+	</table>
 					</div>
 				</c:forEach>
  

@@ -11,24 +11,24 @@
 	<div id="park-content">
 		<c:url var="image"
 			value="/img/parks/${fn:toLowerCase(parks.parkCode)}.jpg" />
-		<a><img src="${image}" /> </a>
+		<a><img class="images" src="${image}" /> </a>
 		<h2>${parks.parkName}</h2>
-		<ul>
-			<li>${parks.parkCode}</li>
-			<li>${parks.state}</li>
-			<li>${parks.acreage}</li>
-			<li>${parks.elevationInFeet}</li>
-			<li>${parks.milesOfTrail}</li>
-			<li>${parks.numberOfCampSites}</li>
-			<li>${parks.climate}</li>
-			<li>${parks.yearFounded}</li>
-			<li>${parks.annualVisitorCount}</li>
-			<li>${parks.inspirationalQuote}</li>
-			<li>${parks.inspirationalQuoteSource}</li>
-			<li>${parks.parkDescription}</li>
-			<li>${parks.entryFee}</li>
-			<li>${parks.numberOfAnimalSpecies}</li>
-		</ul>
+		
+			<p>${parks.parkCode}</p>
+			<p>${parks.state}</p>
+			<p>${parks.acreage}</p>
+			<p>${parks.elevationInFeet}</p>
+			<p>${parks.milesOfTrail}</p>
+			<p>${parks.numberOfCampSites}</p>
+			<p>${parks.climate}</p>
+			<p>${parks.yearFounded}</p>
+			<p>${parks.annualVisitorCount}</p>
+			<p>${parks.inspirationalQuote}</p>
+			<p>${parks.inspirationalQuoteSource}</p>
+			<p>${parks.parkDescription}</p>
+			<p>${parks.entryFee}</p>
+			<p>${parks.numberOfAnimalSpecies}</p>
+		
 
 	</div>
 	<%-- 	<c:url var="temperatureUrl" value="parkDetail?parkCode=${parks.parkCode}"/>				
