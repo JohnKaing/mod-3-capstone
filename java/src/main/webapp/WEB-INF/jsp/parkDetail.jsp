@@ -45,21 +45,22 @@
 		</select> <input type="submit" value="Change Temperature">
 	</form>
 
-<%-- <c:forEach var = "dailyForecast" items = "${weatherAtPark}">
+<%-- <c:forEach var = "dailyForecast" items = "${forecasts}">
 <c:choose>
 	<c:when test = "${dailyForecast.forecast == 'partly cloudy'}">
-		<c:url var = "weatherImg" value = "/img/weather/partlyCloudy.png"/>
-		<img src = "${weatherImg}" alt = "Forecast Img"/>
+
 		
-		<c:if test = "${tempUnit == 'F'}">
-			High: ${dailyForecast.highTempF}F - 
-			Low: ${dailyForecast.lowTempF}F
+		<c:if test = "${temp == 'F'}">
+			High: ${dailyForecast.high}F - 
+			Low: ${dailyForecast.low}F
 		</c:if>
 		
-		<c:if test = "${tempUnit == 'C'}">	
-			High: ${dailyForecast.highTempC}C - 
-			Low: ${dailyForecast.lowTempC}C
+		<c:if test = "${temp == 'C'}">	
+			High: (${dailyForecast.high} -32) * 5/9 C - 
+			Low: ${dailyForecast.low}C
 		</c:if>	
+		
+	<!-- 	(100°F − 32) × 5/9 = 37.778°C -->
 		
 	</c:when>
 	
@@ -67,18 +68,20 @@
 		<c:url var = "weatherImg" value = "/img/weather/${dailyForecast.forecast}.png"/>
 		<img src = "${weatherImg}" alt = "Forecast Img"/>
 		
-		<c:if test = "${tempUnit == 'F'}">
-			High: ${dailyForecast.highTempF}F -
-			Low: ${dailyForecast.lowTempF}F
+		<c:if test = "${temp == 'F'}">
+			High: ${dailyForecast.high}F -
+			Low: ${dailyForecast.low}F
 		</c:if>
 
-		<c:if test = "${tempUnit == 'C'}">	
-			High: ${dailyForecast.highTempC}C -
-			Low: ${dailyForecast.lowTempC}C
+		<c:if test = "${temp == 'C'}">	
+			High: ${dailyForecast.high}C -
+			Low: ${dailyForecast.low}C
 		</c:if>	
+		
 	</c:otherwise>
-</c:choose><br/>	 --%>
-
+	
+</c:choose><br/>	 
+</c:forEach> --%>
 
 
 

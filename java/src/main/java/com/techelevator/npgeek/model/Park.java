@@ -17,6 +17,7 @@ public class Park {
 	private String parkDescription;
 	private double entryFee;
 	private int    numberOfAnimalSpecies;
+	private int    surveyCount;
 	/**
 	 * @return the parkCode
 	 */
@@ -196,6 +197,18 @@ public class Park {
 	 */
 	public void setNumberOfAnimalSpecies(int numberOfAnimalSpecies) {
 		this.numberOfAnimalSpecies = numberOfAnimalSpecies;
+	}
+	/**
+	 * @return the surveyCount
+	 */
+	public int getSurveyCount() {
+		return surveyCount;
+	}
+	/**
+	 * @param surveyCount the surveyCount to set
+	 */
+	public void setSurveyCount(int surveyCount) {
+		this.surveyCount = surveyCount;
 	}
 	
 	

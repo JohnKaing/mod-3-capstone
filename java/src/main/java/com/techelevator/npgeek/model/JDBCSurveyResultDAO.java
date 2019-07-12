@@ -51,10 +51,14 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 	
 	public List<FavoritePark> getFavoriteParks() {
 		List<FavoritePark> allFavoriteParks = new ArrayList<>();
-		String sqlSelectFavorites = "SELECT count(*) as surveycount, parkcode from survey_result GROUP by parkcode ORDER by surveycount DESC";
+		String sqlSelectFavorites = "SELECT count(*) as surveyCount, park.parkcode, park.parkname " + 
+				"from survey_result, park " + 
+				"where survey_result.parkcode = park.parkcode " + 
+				"GROUP by park.parkcode, park.parkname " + 
+				"ORDER by surveycount DESC ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectFavorites);
 		while(results.next()) {
-			allFavoriteParks.add(new FavoritePark(results.getString("parkcode"),results.getInt("count"))); 
+			allFavoriteParks.add(new FavoritePark(results.getString("parkcode"),results.getInt("surveyCount"),results.getString("parkname"))); 
 		}
 		return allFavoriteParks;
 	}

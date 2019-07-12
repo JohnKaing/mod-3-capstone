@@ -29,14 +29,14 @@ public class SurveyController {
 	
 	@RequestMapping(path="/surveyResult", method=RequestMethod.GET)
 	public String showSurvey(ModelMap modelHolder) {
-		List<Park> parks = new ArrayList<>();
-		List<FavoritePark> favoriteParks = SurveyResultDAO.getFavoriteParks();
-		for(FavoritePark fp: favoriteParks) {
-			parks.add(somePark.getParkByParkCode(fp.getParkCode()));
-			
-		}
+//		List<Park> parks = new ArrayList<>();
+//		List<FavoritePark> favoriteParks = SurveyResultDAO.getFavoriteParks();
+//		for(FavoritePark fp: favoriteParks) {
+//			parks.add(somePark.getParkByParkCode(fp.getParkCode()));
+//			
+//		}
 		
-		modelHolder.put("parks", parks);
+//		modelHolder.put("favParks", parks);
 //		List<SurveyResult> surveyResult = SurveyResultDAO.getAllPosts(); 
 //		request.setAttribute("post", surveyResult);		
 		
@@ -52,8 +52,12 @@ public class SurveyController {
 	
 	
 	@RequestMapping(path="/surveyResult", method=RequestMethod.POST)
-	public String sendSurveyInput(@ModelAttribute SurveyResult post) {		
+	public String sendSurveyInput(@ModelAttribute SurveyResult post, ModelMap modelHolder) {		
+
+		List<FavoritePark> favoriteParks = SurveyResultDAO.getFavoriteParks();
 		
+		
+		modelHolder.put("favParks", favoriteParks);
 			SurveyResultDAO.save(post);
 			
 return "/surveyResult";

@@ -9,6 +9,7 @@ public class SurveyResult {
 	private String emailAddress;
 	private String state;
 	private String activityLevel;
+	private int surveyCount;
 	/**
 	 * @return the surveyId
 	 */
@@ -73,6 +74,18 @@ public class SurveyResult {
 	public void setDatePosted(LocalDateTime now) {
 		// TODO Auto-generated method stub
 		
+	}
+	/**
+	 * @return the surveyCount
+	 */
+	public int getSurveyCount() {
+		return surveyCount;
+	}
+	/**
+	 * @param surveyCount the surveyCount to set
+	 */
+	public void setSurveyCount(int surveyCount) {
+		this.surveyCount = surveyCount;
 	}
 	
 
