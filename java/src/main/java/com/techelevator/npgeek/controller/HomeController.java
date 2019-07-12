@@ -43,7 +43,7 @@ public class HomeController {
 			session.setAttribute("tempConversion", temp);
 		}
 		
-		Park aPark = somePark.getParkByParkCode("parkCode");
+		Park aPark = somePark.getParkByParkCode(parkCode);
 		modelHolder.put("parks", aPark);
 		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
 
