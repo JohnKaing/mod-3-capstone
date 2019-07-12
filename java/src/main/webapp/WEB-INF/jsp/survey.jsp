@@ -2,13 +2,15 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
     
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<c:url var = "formAction" value = "/surveyResult"/>
 
    <h2>Survey</h2>
-   					<form action="surveyResult" method="POST">
+   					<form:form action="${formAction}" method="POST" modelAttribute = "SurveyResult">
    					<div class="formInputGroup">
 					
 					<label for="favoriteNationalPark">Favorite National Park: </label>
@@ -22,8 +24,10 @@
 					</div>
 				
 					<div class="formInputGroup">
-					<label for="yourEmail">Your Email: </label>
-				    <input type="text" name="emailAddress" id="subject" />
+					<label for="emailAddress">Your Email: </label>
+				   <!--  <input type="text" name="emailAddress" id="subject" /> -->
+				    <form:input path = "emailAddress" />	
+					<form:errors path = "emailAddress" cssClass = "error"/><br/>
 					
 					</div>
 			
@@ -94,7 +98,7 @@
 			</select>
 			</div>
 						
-					<input type="submit" value="Post" />		
-			</form>
+					<input type="submit" value="Post Survey" />		
+			</form:form>
    
    <c:import url="/WEB-INF/jsp/footer.jsp" /> 

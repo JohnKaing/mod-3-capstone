@@ -2,14 +2,20 @@ package com.techelevator.npgeek.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class SurveyResult {
 
 	private int    surveyId;
 	private String parkCode;
+	@NotBlank(message = "Email required please try again")
+	@Email(message = "Invalid email format, please try again.")
 	private String emailAddress;
 	private String state;
 	private String activityLevel;
 	private int surveyCount;
+	
 	/**
 	 * @return the surveyId
 	 */
