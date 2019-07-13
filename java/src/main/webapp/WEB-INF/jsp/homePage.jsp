@@ -15,10 +15,10 @@
 		<tr>
 					<th><a href="parkDetail?parkCode=${homePark.parkCode}"> <img class="images" src="${image}"/> </a></th>
 					<ul>
-					<td><h2>${homePark.parkName}</h2></td>
+					<td><h2>${homePark.parkName}</h2><br>
 						
-							<td> ${homePark.state}</td>
-							<td> ${homePark.parkDescription}</td>
+							 <b>State:</b> ${homePark.state}<br><br>
+							 ${homePark.parkDescription}</td>
 						
 						</ul>
 						</tr>

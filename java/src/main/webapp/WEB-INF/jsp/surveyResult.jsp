@@ -15,8 +15,8 @@
 		<tr>
 			<th><img class="tableImages" src="${parkImage}"></th>
 			
-			<td>${surveys.parkName}</td>
-			<td>Number of Ratings: ${surveys.count}</td>
+			<td><h3>${surveys.parkName}</h3><br>
+			Number of Ratings: ${surveys.count}</td>
 
 		</tr>
 

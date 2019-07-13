@@ -14,20 +14,20 @@
 		<a><img class="images" src="${image}" /> </a>
 		<h2>${parks.parkName}</h2>
 
-		<p><b>Park Code:</b>				 ${parks.parkCode}</p>
-		<p><b>State:</b>		 			 ${parks.state}</p>
-		<p><b>Acreage:</b> 		 			 ${parks.acreage}</p>
-		<p><b>Elevation in Feet:</b> 		 ${parks.elevationInFeet}</p>
-		<p><b>Miles of Trail:</b>    		 ${parks.milesOfTrail}</p>
-		<p><b>Number of Campsites:</b>		 ${parks.numberOfCampSites}</p>
-		<p><b>Climate:</b>				  	 ${parks.climate}</p>
-		<p><b>Year Founded:</b>			     ${parks.yearFounded}</p>
-		<p><b>Annual Visitor Count:</b>      ${parks.annualVisitorCount}</p>
-		<p><b>Insirational Quote:</b>	     ${parks.inspirationalQuote}</p>
-		<p><b>Quote Source:</b>				 ${parks.inspirationalQuoteSource}</p>
-		<p><b>Park Description:</b>			 ${parks.parkDescription}</p>
-		<p><b>Entry Fee:</b>				 ${parks.entryFee}</p>
-		<p><b>Number of Animals Species:</b> ${parks.numberOfAnimalSpecies}</p>
+		<p><b>Park Code:</b><br>				 ${parks.parkCode}</p>
+		<p><b>State:</b><br>		 			 ${parks.state}</p>
+		<p><b>Acreage:</b> <br>		 			 ${parks.acreage}</p>
+		<p><b>Elevation in Feet:</b> <br>		 ${parks.elevationInFeet}</p>
+		<p><b>Miles of Trail:</b><br>    		 ${parks.milesOfTrail}</p>
+		<p><b>Number of Campsites:</b><br>		 ${parks.numberOfCampSites}</p>
+		<p><b>Climate:</b>	<br>			  	 ${parks.climate}</p>
+		<p><b>Year Founded:</b><br>			     ${parks.yearFounded}</p>
+		<p><b>Annual Visitor Count:</b> <br>     ${parks.annualVisitorCount}</p>
+		<p><b>Insirational Quote:</b><br>	     ${parks.inspirationalQuote}</p>
+		<p><b>Quote Source:</b>	<br>			 ${parks.inspirationalQuoteSource}</p>
+		<p><b>Park Description:</b>	<br>		 ${parks.parkDescription}</p>
+		<p><b>Entry Fee:</b><br>				 ${parks.entryFee}</p>
+		<p><b>Number of Animals Species:</b><br> ${parks.numberOfAnimalSpecies}</p>
 
 
 	</div>
