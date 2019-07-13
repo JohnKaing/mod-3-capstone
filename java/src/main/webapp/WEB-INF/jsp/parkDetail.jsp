@@ -17,7 +17,7 @@
 		<p><b>Park Code:</b><br>				 ${parks.parkCode}</p>
 		<p><b>State:</b><br>		 			 ${parks.state}</p>
 		<p><b>Acreage:</b> <br>		 			 ${parks.acreage}</p>
-		<p><b>Elevation in Feet:</b> <br>		 ${parks.elevationInFeet}</p>
+		<p><b>Elevation in Feet:</b> <br>		 ${parks.elevationInFeet} FT</p>
 		<p><b>Miles of Trail:</b><br>    		 ${parks.milesOfTrail}</p>
 		<p><b>Number of Campsites:</b><br>		 ${parks.numberOfCampSites}</p>
 		<p><b>Climate:</b>	<br>			  	 ${parks.climate}</p>
@@ -26,7 +26,7 @@
 		<p><b>Insirational Quote:</b><br>	     ${parks.inspirationalQuote}</p>
 		<p><b>Quote Source:</b>	<br>			 ${parks.inspirationalQuoteSource}</p>
 		<p><b>Park Description:</b>	<br>		 ${parks.parkDescription}</p>
-		<p><b>Entry Fee:</b><br>				 ${parks.entryFee}</p>
+		<p><b>Entry Fee:</b><br>			   $ ${parks.entryFee}</p>
 		<p><b>Number of Animals Species:</b><br> ${parks.numberOfAnimalSpecies}</p>
 
 
@@ -44,7 +44,8 @@
 	</form>
 
 
-
+<table>
+				<tr>
 
 	<div id="forecast-content">
 		<c:forEach var="parkForecast" items="${forecasts}">
@@ -54,14 +55,13 @@
 				<c:url var="forecastImage" value="/img/weather/partlyCloudy.png" />
 			</c:if>
 
-			<table>
-				<tr>
-					<td><a><img src="${forecastImage}" /> </a></td>
-					<td>${parkForecast.forecast}</td>
-					<td>${parkForecast.high}</td>
-					<td>${parkForecast.low}</td>
-					<td>${parkForecast.fiveDayForecastValue}</td>
-					<td><c:if test="${parkForecast.forecast eq 'snow'}">
+			
+					<td><a><img src="${forecastImage}" /> </a><br>
+					${parkForecast.forecast}<br>
+					${parkForecast.high}<br>
+					${parkForecast.low}<br>
+					${parkForecast.fiveDayForecastValue}<br>
+					<c:if test="${parkForecast.forecast eq 'snow'}">
 							<label>Pack snowshoes</label>
 						</c:if> <c:if test="${parkForecast.forecast eq 'rain'}">
 							<label>pack rain gear and wear waterproof shoes</label>
@@ -79,10 +79,10 @@
 
 
 
-				</tr>
-			</table>
+			
 		</c:forEach>
-
+	</tr>
+			</table>
 	</div>
 </div>
 
