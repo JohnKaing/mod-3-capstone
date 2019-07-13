@@ -1,5 +1,8 @@
 /* @charset "UTF-8"; */
 /* :nth-child(2n) */
+* {
+	background-color: #F5DEB3;
+}
 
 #coverPic {
 	width: 30%;
@@ -9,9 +12,12 @@
 	
 }
 
-.images {
-	width: 20%
+#forecast-content {
+	
 }
+/* .images {
+	width: 100%
+} */
 
 .tableImages {
 	width: 50%

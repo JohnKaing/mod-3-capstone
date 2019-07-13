@@ -14,11 +14,13 @@
 
 		<tr>
 					<th><a href="parkDetail?parkCode=${homePark.parkCode}"> <img class="images" src="${image}"/> </a></th>
-					<h2>${homePark.parkName}</h2>
+					<ul>
+					<td><h2>${homePark.parkName}</h2></td>
 						
 							<td> ${homePark.state}</td>
 							<td> ${homePark.parkDescription}</td>
 						
+						</ul>
 						</tr>
 
 	</table>

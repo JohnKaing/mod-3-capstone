@@ -13,75 +13,36 @@
 			value="/img/parks/${fn:toLowerCase(parks.parkCode)}.jpg" />
 		<a><img class="images" src="${image}" /> </a>
 		<h2>${parks.parkName}</h2>
-		
-			<p>${parks.parkCode}</p>
-			<p>${parks.state}</p>
-			<p>${parks.acreage}</p>
-			<p>${parks.elevationInFeet}</p>
-			<p>${parks.milesOfTrail}</p>
-			<p>${parks.numberOfCampSites}</p>
-			<p>${parks.climate}</p>
-			<p>${parks.yearFounded}</p>
-			<p>${parks.annualVisitorCount}</p>
-			<p>${parks.inspirationalQuote}</p>
-			<p>${parks.inspirationalQuoteSource}</p>
-			<p>${parks.parkDescription}</p>
-			<p>${parks.entryFee}</p>
-			<p>${parks.numberOfAnimalSpecies}</p>
-		
+
+		<p><b>Park Code:</b>				 ${parks.parkCode}</p>
+		<p><b>State:</b>		 			 ${parks.state}</p>
+		<p><b>Acreage:</b> 		 			 ${parks.acreage}</p>
+		<p><b>Elevation in Feet:</b> 		 ${parks.elevationInFeet}</p>
+		<p><b>Miles of Trail:</b>    		 ${parks.milesOfTrail}</p>
+		<p><b>Number of Campsites:</b>		 ${parks.numberOfCampSites}</p>
+		<p><b>Climate:</b>				  	 ${parks.climate}</p>
+		<p><b>Year Founded:</b>			     ${parks.yearFounded}</p>
+		<p><b>Annual Visitor Count:</b>      ${parks.annualVisitorCount}</p>
+		<p><b>Insirational Quote:</b>	     ${parks.inspirationalQuote}</p>
+		<p><b>Quote Source:</b>				 ${parks.inspirationalQuoteSource}</p>
+		<p><b>Park Description:</b>			 ${parks.parkDescription}</p>
+		<p><b>Entry Fee:</b>				 ${parks.entryFee}</p>
+		<p><b>Number of Animals Species:</b> ${parks.numberOfAnimalSpecies}</p>
+
 
 	</div>
-	<%-- 	<c:url var="temperatureUrl" value="parkDetail?parkCode=${parks.parkCode}"/>				
- --%>
+
 	<c:url var="temperatureUrl" value="/temperatureConversion">
 		<c:param name="parkCode">${parks.parkCode}</c:param>
 	</c:url>
 	<form action="${temperatureUrl}" method="POST">
-		<%-- 	<input type="hidden" name="parkCode" value="${parks.parkCode}"/>
- --%>
+
 		<select name="temperature">Select Temperature
 			<option value="Fahrenheit">Fahrenheit</option>
 			<option value="Celsius">Celsius</option>
 		</select> <input type="submit" value="Change Temperature">
 	</form>
 
-<%-- <c:forEach var = "dailyForecast" items = "${forecasts}">
-<c:choose>
-	<c:when test = "${dailyForecast.forecast == 'partly cloudy'}">
-
-		
-		<c:if test = "${temp == 'F'}">
-			High: ${dailyForecast.high}F - 
-			Low: ${dailyForecast.low}F
-		</c:if>
-		
-		<c:if test = "${temp == 'C'}">	
-			High: (${dailyForecast.high} -32) * 5/9 C - 
-			Low: ${dailyForecast.low}C
-		</c:if>	
-		
-	<!-- 	(100°F − 32) × 5/9 = 37.778°C -->
-		
-	</c:when>
-	
-	<c:otherwise>
-		<c:url var = "weatherImg" value = "/img/weather/${dailyForecast.forecast}.png"/>
-		<img src = "${weatherImg}" alt = "Forecast Img"/>
-		
-		<c:if test = "${temp == 'F'}">
-			High: ${dailyForecast.high}F -
-			Low: ${dailyForecast.low}F
-		</c:if>
-
-		<c:if test = "${temp == 'C'}">	
-			High: ${dailyForecast.high}C -
-			Low: ${dailyForecast.low}C
-		</c:if>	
-		
-	</c:otherwise>
-	
-</c:choose><br/>	 
-</c:forEach> --%>
 
 
 
@@ -92,7 +53,7 @@
 			<c:if test="${parkForecast.forecast eq 'partly cloudy'}">
 				<c:url var="forecastImage" value="/img/weather/partlyCloudy.png" />
 			</c:if>
-			<%-- <a><img src="${forecastImage}"/> </a> --%>
+
 			<table>
 				<tr>
 					<td><a><img src="${forecastImage}" /> </a></td>

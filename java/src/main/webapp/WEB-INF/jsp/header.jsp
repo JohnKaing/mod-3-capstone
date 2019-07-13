@@ -21,6 +21,7 @@
         	<div class="homeButtons">
             <a href="homePage">Home</a>
             <a href="survey">Survey</a>
+            <a href="surveyResult">Survey Results</a>
         	</div>
 		</ul>
 	
