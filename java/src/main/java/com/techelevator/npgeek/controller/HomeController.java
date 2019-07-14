@@ -20,49 +20,49 @@ import com.techelevator.npgeek.model.WeatherDAO;
 @Controller
 @SessionAttributes("parkDetail")
 public class HomeController {
-	
+
 	@Autowired
 	private ParkDAO somePark;
-	
+
 	@Autowired
 	private WeatherDAO someForecast;
 
-	@RequestMapping(value= {"/","homePage"})
+	@RequestMapping(value = { "/", "homePage" })
 	public String displayHomePage(ModelMap modelHolder) {
 		List<Park> listOfParks = somePark.getAllParks();
 		modelHolder.put("parks", listOfParks);
 		return "homePage";
-		
+
 	}
-	
+
 	@RequestMapping(path = "/parkDetail", method = RequestMethod.GET)
 	public String showParkDetailPage(@RequestParam String parkCode, ModelMap modelHolder, HttpSession session) {
-		String temp = (String)session.getAttribute("tempUnit");
-		if(temp == null) {
+		String temp = (String) session.getAttribute("tempUnit");
+		if (temp == null) {
 			temp = "F";
 			session.setAttribute("tempUnit", temp);
 		}
-		
+
 		Park aPark = somePark.getParkByParkCode(parkCode);
 		modelHolder.put("parks", aPark);
 		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode, temp));
 
 		return "parkDetail";
 	}
-	
+
 	@RequestMapping(path = "/temperatureConversion", method = RequestMethod.POST)
-	public String showParkDetailPageTemp(HttpSession session, @RequestParam String temperature, @RequestParam String parkCode) {
-		if(temperature.startsWith("F")) {
+	public String showParkDetailPageTemp(HttpSession session, @RequestParam String temperature,
+			@RequestParam String parkCode) {
+		if (temperature.startsWith("F")) {
 			session.setAttribute("tempUnit", "F");
-		}
-		else if(temperature.startsWith("C")) {
+		} else if (temperature.startsWith("C")) {
 			session.setAttribute("tempUnit", "C");
 		}
-		
+
 //		String parkCode = request.getParameter("parkCode");
 //		modelHolder.put("parks", somePark.getParkByParkCode(parkCode));
 //		modelHolder.put("forecasts", someForecast.getForecastByParkCode(parkCode));
 		return "redirect:/parkDetail?parkCode=" + parkCode;
 	}
-	
+
 }

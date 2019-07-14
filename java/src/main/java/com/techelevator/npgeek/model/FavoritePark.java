@@ -47,5 +47,5 @@ public class FavoritePark {
 	public void setParkName(String parkName) {
 		this.parkName = parkName;
 	}
-	
+
 }

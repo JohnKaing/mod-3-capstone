@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JDBCSurveyResultDAO implements SurveyResultDAO {
-	
+
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
@@ -20,7 +20,6 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	
 	private SurveyResult mapRowSetToSurveyResult(SqlRowSet results) {
 		SurveyResult aSurveyResult = new SurveyResult();
 		aSurveyResult.setSurveyId(results.getInt("surveyId"));
@@ -31,13 +30,12 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 		return aSurveyResult;
 	}
 
-	
 	@Override
 	public List<SurveyResult> getAllPosts() { // don't need this, take out when refactoring
 		List<SurveyResult> allPosts = new ArrayList<>();
 		String sqlSelectAllPosts = "SELECT * FROM survey_result";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllPosts);
-		while(results.next()) {
+		while (results.next()) {
 			SurveyResult post = new SurveyResult();
 			post.setSurveyId(results.getInt("id"));
 			post.setParkCode(results.getString("parkCode"));
@@ -48,26 +46,26 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 		}
 		return allPosts;
 	}
-	
+
 	public List<FavoritePark> getFavoriteParks() {
 		List<FavoritePark> allFavoriteParks = new ArrayList<>();
-		String sqlSelectFavorites = "SELECT count(*) as surveyCount, park.parkcode, park.parkname " + 
-				"from survey_result, park " + 
-				"where survey_result.parkcode = park.parkcode " + 
-				"GROUP by park.parkcode, park.parkname " + 
-				"ORDER by surveycount DESC ";
+		String sqlSelectFavorites = "SELECT count(*) as surveyCount, park.parkcode, park.parkname "
+				+ "from survey_result, park " + "where survey_result.parkcode = park.parkcode "
+				+ "GROUP by park.parkcode, park.parkname " + "ORDER by surveycount DESC ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectFavorites);
-		while(results.next()) {
-			allFavoriteParks.add(new FavoritePark(results.getString("parkcode"),results.getInt("surveyCount"),results.getString("parkname"))); 
+		while (results.next()) {
+			allFavoriteParks.add(new FavoritePark(results.getString("parkcode"), results.getInt("surveyCount"),
+					results.getString("parkname")));
 		}
 		return allFavoriteParks;
 	}
-	
+
 	@Override
 	public void save(SurveyResult post) {
 		int id = getNextId();
 		String sqlInsertPost = "INSERT INTO survey_result(surveyid, parkcode, emailaddress, state, activitylevel) VALUES (?,?,?,?,?)";
-		jdbcTemplate.update(sqlInsertPost, id, post.getParkCode(), post.getEmailAddress(), post.getState(), post.getActivityLevel());
+		jdbcTemplate.update(sqlInsertPost, id, post.getParkCode(), post.getEmailAddress(), post.getState(),
+				post.getActivityLevel());
 		post.setSurveyId(id);
 	}
 
@@ -75,11 +73,10 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 		String sqlSelectNextId = "SELECT NEXTVAL('seq_surveyid')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		int id = 0;
-		if(results.next()) {
+		if (results.next()) {
 			id = results.getInt(1);
-		} 
+		}
 		return id;
 	}
-
 
 }

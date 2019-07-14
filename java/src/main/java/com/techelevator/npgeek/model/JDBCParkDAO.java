@@ -21,7 +21,6 @@ public class JDBCParkDAO implements ParkDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-
 	private Park mapRowSetToPark(SqlRowSet results) {
 		Park aPark = new Park();
 		aPark.setParkCode(results.getString("parkCode"));
@@ -42,7 +41,6 @@ public class JDBCParkDAO implements ParkDAO {
 		return aPark;
 	}
 
-
 	@Override
 	public List<Park> getAllParks() {
 		List<Park> allParks = new ArrayList<>();
@@ -54,7 +52,6 @@ public class JDBCParkDAO implements ParkDAO {
 		return allParks;
 	}
 
-	
 	@Override
 	public Park getParkByParkCode(String parkCode) {
 		Park aPark = null;
@@ -65,9 +62,4 @@ public class JDBCParkDAO implements ParkDAO {
 		}
 		return aPark;
 	}
-
-	
-	
-	
-	
 }

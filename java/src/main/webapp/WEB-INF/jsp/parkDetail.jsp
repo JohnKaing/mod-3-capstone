@@ -29,7 +29,6 @@
 		<p><b>Entry Fee:</b><br>			   $ ${parks.entryFee}</p>
 		<p><b>Number of Animals Species:</b><br> ${parks.numberOfAnimalSpecies}</p>
 
-
 	</div>
 
 	<c:url var="temperatureUrl" value="/temperatureConversion">
@@ -41,13 +40,13 @@
 			<option value="Fahrenheit">Fahrenheit</option>
 			<option value="Celsius">Celsius</option>
 		</select> <input type="submit" value="Change Temperature">
-	</form>
-
+	
+</form>
 
 <table>
 				<tr>
 
-	<div id="forecast-content">
+	<!-- <div id="forecast-content"> -->
 		<c:forEach var="parkForecast" items="${forecasts}">
 			<c:url var="forecastImage"
 				value="/img/weather/${parkForecast.forecast}.png" />
@@ -55,34 +54,49 @@
 				<c:url var="forecastImage" value="/img/weather/partlyCloudy.png" />
 			</c:if>
 
-			
 					<td><a><img src="${forecastImage}" /> </a><br>
-					${parkForecast.forecast}<br>
-					${parkForecast.high}<br>
-					${parkForecast.low}<br>
+					<c:choose> 
+	      			 <c:when test="${parkForecast.fiveDayForecastValue eq '1'}">Today<br>
+	      			 </c:when>
+               <c:otherwise>
 					${parkForecast.fiveDayForecastValue}<br>
+					</c:otherwise>
+					</c:choose>
+					
+					${parkForecast.forecast}<br>
+					Temperatures:<br>
+					High: ${parkForecast.high}<br>
+				<%-- 	<c:choose> 
+	      			 <c:when test="${temperature == Celsius}">C<br>
+	      			 </c:when>
+               <c:otherwise>
+					F<br>
+					</c:otherwise>
+					</c:choose> --%>
+					Low: ${parkForecast.low}<br>
+					
 					<c:if test="${parkForecast.forecast eq 'snow'}">
-							<label>Pack snowshoes</label>
+							<label>NOTE: Pack snowshoes<br></label>
 						</c:if> <c:if test="${parkForecast.forecast eq 'rain'}">
-							<label>pack rain gear and wear waterproof shoes</label>
+							<label>NOTE: pack rain gear and wear waterproof shoes<br></label>
 						</c:if> <c:if test="${parkForecast.forecast eq 'thunderstorms'}">
-							<label>"Seek shelter and avoid hiking on exposed ridges"</label>
+							<label>NOTE: "Seek shelter and avoid hiking on exposed ridges"<br></label>
 						</c:if> <c:if test="${parkForecast.forecast eq 'sun'}">
-							<label>"pack sunblock"</label>
+							<label>NOTE: "pack sunblock"<br></label>
 						</c:if> <c:if test="${parkForecast.high > '75'}">
-							<label>bring an extra gallon of water</label>
+							<label>NOTE: bring an extra gallon of water<br></label>
 						</c:if> <c:if test="${parkForecast.high - parkForecast.low > '20'}">
-							<label>wear breathable layers</label>
-						</c:if> <c:if test="${parkForecast.low < '20'}">
-							<label>Warning! danger of exposure to frigid temps</label>
+							<label>NOTE: wear breathable layers<br></label>
+					<%-- 	</c:if> <c:if test="${parkForecast.low < '20' & temperature != Celsius}">
+							<label>Warning! danger of exposure to frigid temps<br></label> --%>
+							</c:if> <c:if test="${parkForecast.low < '-6' && temperature == Celsius}">
+							<label>NOTE: Warning! danger of exposure to frigid temps</label>
 						</c:if></td>
 
-
-
-			
 		</c:forEach>
 	</tr>
 			</table>
+			
 	</div>
 </div>
 
