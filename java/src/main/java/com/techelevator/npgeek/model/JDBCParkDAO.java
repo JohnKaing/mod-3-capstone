@@ -10,17 +10,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class JDBCParkDAO implements ParkDAO {
-	
+
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public JDBCParkDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	private Park mapRowSetToPark(SqlRowSet results) {
 		Park aPark = new Park();
 		aPark.setParkCode(results.getString("parkCode"));

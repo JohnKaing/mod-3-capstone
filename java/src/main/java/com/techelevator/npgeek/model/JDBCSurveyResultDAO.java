@@ -30,22 +30,6 @@ public class JDBCSurveyResultDAO implements SurveyResultDAO {
 		return aSurveyResult;
 	}
 
-	@Override
-	public List<SurveyResult> getAllPosts() { // don't need this, take out when refactoring
-		List<SurveyResult> allPosts = new ArrayList<>();
-		String sqlSelectAllPosts = "SELECT * FROM survey_result";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllPosts);
-		while (results.next()) {
-			SurveyResult post = new SurveyResult();
-			post.setSurveyId(results.getInt("id"));
-			post.setParkCode(results.getString("parkCode"));
-			post.setEmailAddress(results.getString("emailAddress"));
-			post.setState(results.getString("state"));
-			post.setActivityLevel(results.getString("activityLevel"));
-			allPosts.add(post);
-		}
-		return allPosts;
-	}
 
 	public List<FavoritePark> getFavoriteParks() {
 		List<FavoritePark> allFavoriteParks = new ArrayList<>();
